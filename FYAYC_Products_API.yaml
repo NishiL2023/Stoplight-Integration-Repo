@@ -1,0 +1,833 @@
+openapi: 3.0.3
+x-stoplight:
+  id: llb1f1d9kkk1z
+info:
+  version: v2
+  title: Fyayc Products API
+  description: |
+    This a sample specification part of a YT tutorial showcasing how to design a RESTful API contract using OpenAPI.
+
+    We are going to create an API to manage products with the the following operations:
+    * List all Products
+    * Create a Product
+    * Get Product details
+    * Update Product
+    * Delete Product
+
+    We will cover also the following topics:
+    * Result pagination
+    * Security (Auth'n / Auth'z)
+
+    We will use a simple **Product** resource representation with the following properties:
+    * ID
+    * Name
+    * Price
+    * Description (optional)
+    * Last updated date-time
+servers:
+  - url: 'http://localhost:8080/products-api/v1'
+    description: Localhost environment
+  - url: 'http://127.0.0.1:4010'
+    description: Local Prism Server
+paths:
+  /products:
+    get:
+      tags:
+        - Products
+      summary: List products
+      description: Use this endpoint to browse all products in the catalog
+      operationId: getAllProducts
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 5
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResult'
+              examples:
+                'Offset 0, Limit 5':
+                  value:
+                    offset: 0
+                    limit: 5
+                    total: 1500
+                    data:
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1001'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1002'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1003'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1004'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1005'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                'Offset 2, Limit 3':
+                  value:
+                    offset: 2
+                    limit: 3
+                    total: 1500
+                    data:
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1003'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1004'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - categories:
+                          - id: '12345'
+                            name: Laptops
+                        created_at: '2020-09-30T07:43:32.000Z'
+                        id: '1005'
+                        name: Mac Book Pro
+                        price: 2034.99
+                        description: Mac Book Pro
+                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+      servers:
+        - url: 'http://localhost:8080/products-api/v1'
+          description: Localhost environment
+        - url: 'http://127.0.0.1:4010'
+          description: Local Prism Server
+      x-stoplight:
+        id: hzqvisiyob6lw
+    post:
+      tags:
+        - Products
+      summary: Create a product
+      description: Use this endpoint to add a new product to the catalog
+      operationId: createProduct
+      requestBody:
+        $ref: '#/components/requestBodies/ProductRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+      servers:
+        - url: 'http://localhost:8080/products-api/v1'
+          description: Localhost environment
+        - url: 'http://127.0.0.1:4010'
+          description: Local Prism Server
+      x-stoplight:
+        id: i2gy61hfi465o
+  '/products/{id}':
+    get:
+      tags:
+        - Products
+      summary: Get product details
+      description: Use this endpoint to get details about a specific product
+      operationId: getProduct
+      parameters:
+        - name: hydrate
+          in: query
+          description: 'Provide a list of pipe separated elements that you want to be omitted from the Product response. If the array is empty, complete Product will be displayed'
+          schema:
+            type: array
+            default: '[]'
+            example: '["images", "variants"]'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '1001'
+          examples:
+            default:
+              value: '1001'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                Complete Product:
+                  value:
+                    id: '1003'
+                    name: MacBook Pro
+                    price: 1999.99
+                    description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                    lastUpdatedOn: '2024-01-01T10:10:10Z'
+                    created_at: '2023-12-16T07:43:32.000Z'
+                    images:
+                      - id: img_123
+                        url: 'https://example.com/macbook-pro.jpg'
+                    inventory_quantity: '10'
+                    options:
+                      - id: clr_1
+                        name: Color
+                        values:
+                          - Red
+                    sku: MBP123
+                    status: active
+                    tags:
+                      - Apple
+                    weight: '1.25'
+                    weight_unit: kg
+                    variants:
+                      - id: '1'
+                        images:
+                          - id: macbook-pro1
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '5'
+                        name: Midnight 16inch MacBook Pro
+                        options:
+                          - id: '1'
+                            name: Color
+                            value: Silver
+                        price: '1999.99'
+                        sku: MBP123-16GB-SILVER-13
+                        weight: '1.25'
+                        weight_unit: lb
+                      - id: '2'
+                        images:
+                          - id: macbook-pro2
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '5'
+                        name: Midnight 16inch MacBook Pro
+                        options:
+                          - id: '1'
+                            name: Color
+                            value: Silver
+                        price: '1999.99'
+                        sku: MBP123-16GB-SILVER-13
+                        weight: '1.25'
+                        weight_unit: lb
+                'hydrate : [images | variants]':
+                  value:
+                    id: '1001'
+                    name: MacBook Pro
+                    price: 1999.99
+                    description: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                    lastUpdatedOn: '2024-01-01T10:10:10Z'
+                    created_at: '2023-12-16T07:43:32.000Z'
+                    inventory_quantity: '10'
+                    options:
+                      - id: clr_1
+                        name: Color
+                        values:
+                          - Red
+                    sku: MBP123
+                    status: active
+                    tags:
+                      - Apple
+                    weight: '1.25'
+                    weight_unit: kg
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+      servers:
+        - url: 'http://localhost:8080/products-api/v1'
+          description: Localhost environment
+        - url: 'http://127.0.0.1:4010'
+          description: Local Prism Server
+      x-stoplight:
+        id: 5k6w1gbufc5xr
+    put:
+      tags:
+        - Products
+      summary: Update product's details
+      description: Use this endpoint to update the product's details
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '1001'
+          examples:
+            default:
+              value: '1001'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+      servers:
+        - url: 'http://localhost:8080/products-api/v1'
+          description: Localhost environment
+        - url: 'http://127.0.0.1:4010'
+          description: Local Prism Server
+      x-stoplight:
+        id: gyay3i1rvyttr
+    delete:
+      tags:
+        - Products
+      summary: Delete product
+      description: Use this endpoint to remove a product from the catalog
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '1001'
+          examples:
+            default:
+              value: '1001'
+      responses:
+        '204':
+          description: Deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+        default:
+          $ref: '#/components/responses/UnexpectedErrorResponse'
+      servers:
+        - url: 'http://localhost:8080/products-api/v1'
+          description: Localhost environment
+        - url: 'http://127.0.0.1:4010'
+          description: Local Prism Server
+      x-stoplight:
+        id: ruo8nzl2vuaed
+tags:
+  - name: Products
+    description: Product management
+components:
+  requestBodies:
+    ProductRequest:
+      description: Product Details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Product'
+  securitySchemes:
+    OAuthClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          scopes:
+            products: Grants full admin access
+          tokenUrl: 'https://abc.eu/auth/token'
+  responses:
+    ProductResponse:
+      description: Product Details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Product'
+    ProductArrayResponse:
+      description: Paginated array of products
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/PaginatedResult'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProductArray'
+              - {}
+    ClientErrorResponse:
+      description: Client error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnexpectedErrorResponse:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundResponse:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedResponse:
+      description: UnauthorizedResponse. Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ForbiddenResponse:
+      description: You do not have enough rights to perform this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    PaginatedResult:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: Page offset
+          example: 10
+        limit:
+          type: integer
+          description: Page size limit
+          example: 5
+        total:
+          type: integer
+          description: Total number of records across all pages
+          example: 1500
+        data:
+          $ref: '#/components/schemas/ProductArray'
+      x-examples:
+        Example 1:
+          offset: 10
+          limit: 5
+          total: 1500
+          data:
+            - id: '1001'
+              name: MacBook Pro
+              price: 1999.99
+              description: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+              lastUpdatedOn: '2024-01-01T10:10:10Z'
+              created_at: '2023-12-16T07:43:32.000Z'
+              images:
+                - url: 'https://example.com/macbook-pro.jpg'
+                  id: img_123
+              inventory_quantity: '10'
+              options:
+                - id: clr_1
+                  name: Color
+                  values:
+                    - Red
+              sku: MBP123
+              status: active
+              tags:
+                - Apple
+              weight: '1.25'
+              weight_unit: kg
+              variants:
+                - id: '1'
+                  images:
+                    - id: img_medium
+                      url: 'https://example.com/macbook-pro.jpg'
+                  inventory_quantity: '5'
+                  name: Midnight 16inch MacBook Pro
+                  options:
+                    - id: '1'
+                      name: Color
+                      value: Silver
+                  price: '1999.99'
+                  sku: MBP123-16GB-SILVER-13
+                  weight: '1.25'
+                  weight_unit: lb
+      x-stoplight:
+        id: 42tamx8vyvcsu
+    ProductArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'
+      x-examples:
+        Example 1:
+          - id: '1001'
+            name: MacBook Pro
+            price: 1999.99
+            description: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+            lastUpdatedOn: '2024-01-01T10:10:10Z'
+            created_at: '2023-12-16T07:43:32.000Z'
+            images:
+              - url: 'https://example.com/macbook-pro.jpg'
+                id: img_123
+            inventory_quantity: '10'
+            options:
+              - id: clr_1
+                name: Color
+                values:
+                  - Red
+            sku: MBP123
+            status: active
+            tags:
+              - Apple
+            weight: '1.25'
+            weight_unit: kg
+            variants:
+              - id: '1'
+                images:
+                  - id: img_medium
+                    url: 'https://example.com/macbook-pro.jpg'
+                inventory_quantity: '5'
+                name: Midnight 16inch MacBook Pro
+                options:
+                  - id: '1'
+                    name: Color
+                    value: Silver
+                price: '1999.99'
+                sku: MBP123-16GB-SILVER-13
+                weight: '1.25'
+                weight_unit: lb
+      x-stoplight:
+        id: 8dyt2q14mel13
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Product identifier
+          readOnly: true
+          example: '1001'
+        name:
+          type: string
+          description: Product name
+          example: MacBook Pro
+        price:
+          type: number
+          description: Product price
+          format: double
+          example: 1999.99
+        description:
+          type: string
+          description: Product description
+          example: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+        lastUpdatedOn:
+          type: string
+          description: Timestamp of last product update
+          format: date-time
+          readOnly: true
+          example: '2024-01-01T10:10:10Z'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        images:
+          type: array
+          description: An array of image URLs for the product.
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+                example: 'https://images.data.geberit.com/image/upload/macbook-pro.jpg'
+              id:
+                type: string
+                example: img_123
+        inventory_quantity:
+          type: string
+          description: The quantity of the product in stock.
+          example: '10'
+        options:
+          type: array
+          description: An array of options for the product.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: clr_1
+              name:
+                type: string
+                example: Color
+              values:
+                type: array
+                items:
+                  type: string
+                  example: Red
+        sku:
+          type: string
+          example: MBP123
+        status:
+          type: string
+          enum:
+            - active
+            - archived
+        tags:
+          type: array
+          title: Product Tags
+          description: 'An array of tags for the product, used for organization and searching.'
+          items:
+            type: string
+            example: Apple
+        weight:
+          type: string
+          description: The weight of the product.
+          example: '1.25'
+        weight_unit:
+          type: string
+          description: The unit of measurement for the weight of the product.
+          example: kg
+        variants:
+          $ref: '#/components/schemas/Variants'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+              example: 'https://api.dev.mbp.geberit.com/data/v2/products/1001'
+            variants:
+              type: string
+              format: uri
+              example: 'https://api.dev.mbp.geberit.com/data/v2/products/1001/variants'
+      required:
+        - id
+      x-examples:
+        Complete Product:
+          id: '1001'
+          name: MacBook Pro
+          price: 1999.99
+          description: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+          lastUpdatedOn: '2024-01-01T10:10:10Z'
+          created_at: '2023-12-16T07:43:32.000Z'
+          images:
+            - url: 'https://images.data.geberit.com/image/upload/macbook-pro.jpg'
+              id: img_123
+          inventory_quantity: '10'
+          options:
+            - id: clr_1
+              name: Color
+              values:
+                - Red
+          sku: MBP123
+          status: active
+          tags:
+            - Apple
+          weight: '1.25'
+          weight_unit: kg
+          variants:
+            - id: '1'
+              images:
+                - id: img_medium
+                  url: 'https:example.com/macbook-pro.jpg'
+              inventory_quantity: '5'
+              name: Midnight 16inch MacBook Pro
+              options:
+                - id: '1'
+                  name: Color
+                  value: Silver
+              price: '1999.99'
+              sku: MBP123-16GB-SILVER-13
+              weight: '1.25'
+              weight_unit: lb
+          links:
+            self: 'https://api.dev.mbp.geberit.com/data/v2/products/1001'
+            variants: 'https://api.dev.mbp.geberit.com/data/v2/products/1001/variants'
+        'hydrate: [images | variants] ':
+          id: '1001'
+          name: MacBook Pro
+          price: 1999.99
+          description: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+          lastUpdatedOn: '2024-01-01T10:10:10Z'
+          created_at: '2023-12-16T07:43:32.000Z'
+          inventory_quantity: '10'
+          options:
+            - id: clr_1
+              name: Color
+              values:
+                - Red
+          sku: MBP123
+          status: active
+          tags:
+            - Apple
+          weight: '1.25'
+          weight_unit: kg
+          links:
+            self: 'https://api.dev.mbp.geberit.com/data/v2/products/1001'
+            variants: 'https://api.dev.mbp.geberit.com/data/v2/products/1001/variants'
+      x-stoplight:
+        id: b7f7an9fn047p
+    CreatedAt:
+      type: string
+      title: Created at (timestamp)
+      description: The date and time when the object was created.
+      format: date-time
+      readOnly: true
+      example: '2023-12-16T07:43:32.000Z'
+      x-stoplight:
+        id: 8fw6y59d82s3h
+    Variants:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            title: Variant ID
+            description: A unique identifier for the variant of the product.
+            example: '1'
+          images:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: img_medium
+                url:
+                  type: string
+                  title: Image URL
+                  description: The URL of an image of the variant.
+                  format: uri
+                  example: 'https:example.com/macbook-pro.jpg'
+              x-apideck-strict-required:
+                - url
+              x-graphql-type-name: EcommerceVariantImage
+          inventory_quantity:
+            type: string
+            title: Inventory Quantity
+            description: The quantity of the variant in stock.
+            example: '5'
+          name:
+            type: string
+            title: Variant Name
+            description: 'The name for the variant, used for displaying to customers.'
+            example: Midnight 16inch MacBook Pro
+          options:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  title: Option ID
+                  description: A unique identifier for the option of the variant.
+                  example: '1'
+                name:
+                  type: string
+                  title: Option Name
+                  description: The name of the option for the variant.
+                  example: Color
+                value:
+                  type: string
+                  title: Option Value
+                  description: The value of the option for the variant.
+                  example: Silver
+              x-graphql-type-name: EcommerceVariantOption
+          price:
+            type: string
+            title: Variant Price
+            description: The price of the variant.
+            example: '1999.99'
+          sku:
+            type: string
+            title: Variant SKU
+            description: The stock keeping unit of the variant.
+            example: MBP123-16GB-SILVER-13
+          weight:
+            type: string
+            title: Weight
+            description: The weight of the variant.
+            example: '1.25'
+          weight_unit:
+            type: string
+            title: Weight Unit
+            description: The unit of measurement for the weight of the variant.
+            example: lb
+      x-examples:
+        Example 1:
+          - id: '1'
+            images:
+              - id: img_medium
+                url: 'https:example.com/macbook-pro.jpg'
+            inventory_quantity: '5'
+            name: Midnight 16inch MacBook Pro
+            options:
+              - id: '1'
+                name: Color
+                value: Silver
+            price: '1999.99'
+            sku: MBP123-16GB-SILVER-13
+            weight: '1.25'
+            weight_unit: lb
+      x-stoplight:
+        id: n5t5g1q54is8r
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error details
+      x-stoplight:
+        id: kwuio9yy7bh6i
