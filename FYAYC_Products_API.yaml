@@ -1300,7 +1300,7 @@ paths:
       parameters:
         - name: hydrate
           in: query
-          description: 'Provide a list of pipe separated elements that you want to be omitted from the Product response. If the array is empty, complete Product will be displayed'
+          description: 'Provide a list of comma separated elements that you want to be omitted from the Product response. If the array is empty, complete Product will be displayed'
           schema:
             type: array
             default: '[]'
