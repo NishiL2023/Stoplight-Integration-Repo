@@ -1,0 +1,144 @@
+openapi: 3.0.0
+x-stoplight:
+  id: jyv1b29vhbsx5
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  license:
+    name: MIT
+servers:
+  - url: 'http://petstore.swagger.io/v1'
+paths:
+  /pets:
+    get:
+      tags:
+        - pets
+      summary: List all pets
+      operationId: listPets
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: An paged array of pets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pets'
+          headers:
+            x-next:
+              schema:
+                type: string
+              description: A link to the next page of responses
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      servers:
+        - url: 'http://petstore.swagger.io/v1'
+      x-stoplight:
+        id: r7dvfzvt3kzib
+    post:
+      tags:
+        - pets
+      summary: Create a pet
+      operationId: createPets
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      servers:
+        - url: 'http://petstore.swagger.io/v1'
+      x-stoplight:
+        id: 8154cwu00ug9o
+  '/pets/{petId}':
+    get:
+      tags:
+        - pets
+      summary: Info for a specific pet
+      operationId: showPetById
+      parameters:
+        - name: petId
+          in: path
+          description: The id of the pet to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pets'
+              examples:
+                cat:
+                  summary: An example of a cat
+                  value:
+                    id: 2
+                    name: Fluffy
+                    photoUrls: []
+                dog:
+                  summary: An example of a dog
+                  value:
+                    id: 1
+                    name: Spot
+                    photoUrls: '- https://images.dog.ceo/breeds/kelpie/n02105412_893.jpg'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      servers:
+        - url: 'http://petstore.swagger.io/v1'
+      x-stoplight:
+        id: rlotikcrd5wy1
+components:
+  schemas:
+    Pets:
+      type: array
+      items:
+        $ref: '#/components/schemas/Pet'
+      x-stoplight:
+        id: xs0jz7oyvpjy5
+    Pet:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+      required:
+        - id
+        - name
+      x-stoplight:
+        id: 9j6hne2lc88hu
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+      required:
+        - code
+        - message
+      x-stoplight:
+        id: cp47j6x1cfq31
