@@ -1297,7 +1297,7 @@ paths:
       parameters:
         - name: hydrate
           in: query
-          description: 'Provide a list of pipe separated elements that you want to be omitted from the Product response. If the array is empty, complete Product will be displayed'
+          description: 'Provide a list of comma separated elements that you want to be omitted from the Product response. If the array is empty, complete Product will be displayed'
           schema:
             type: array
             default: '[]'
@@ -1371,7 +1371,7 @@ paths:
                         sku: MBP123-16GB-SILVER-13
                         weight: '1.25'
                         weight_unit: lb
-                'hydrate : [images | variants]':
+                'hydrate : [images , variants]':
                   value:
                     id: '1001'
                     name: MacBook Pro
@@ -1554,21 +1554,6 @@ components:
   schemas:
     PaginatedResult:
       type: object
-      properties:
-        offset:
-          type: integer
-          description: Page offset
-          example: 10
-        limit:
-          type: integer
-          description: Page size limit
-          example: 5
-        total:
-          type: integer
-          description: Total number of records across all pages
-          example: 1500
-        data:
-          $ref: '#/components/schemas/ProductArray'
       x-examples:
         Example 1:
           offset: 10
@@ -1613,6 +1598,21 @@ components:
                   weight_unit: lb
       x-stoplight:
         id: 42tamx8vyvcsu
+      properties:
+        offset:
+          type: integer
+          description: Page offset
+          example: 10
+        limit:
+          type: integer
+          description: Page size limit
+          example: 10
+        total:
+          type: integer
+          description: Total number of records across all pages
+          example: 1500
+        data:
+          $ref: '#/components/schemas/ProductArray'
     ProductArray:
       type: array
       items:
