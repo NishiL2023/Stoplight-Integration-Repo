@@ -1520,6 +1520,7 @@ components:
                   data:
                     $ref: '#/components/schemas/ProductArray'
               - {}
+          examples: {}
     ClientErrorResponse:
       description: Client error
       content:
