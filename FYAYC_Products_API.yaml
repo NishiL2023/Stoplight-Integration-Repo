@@ -4,7 +4,7 @@ x-stoplight:
 info:
   version: v2
   title: Fyayc Products API
-  description: |
+  description: |-
     This a sample specification part of a YT tutorial showcasing how to design a RESTful API contract using OpenAPI.
 
     We are going to create an API to manage products with the the following operations:
@@ -24,6 +24,9 @@ info:
     * Price
     * Description (optional)
     * Last updated date-time
+    * Images
+    * Variants
+    * Links
 servers:
   - url: 'http://localhost:8080/products-api/v1'
     description: Localhost environment
