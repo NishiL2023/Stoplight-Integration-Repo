@@ -2,7 +2,7 @@ openapi: 3.0.3
 x-stoplight:
   id: llb1f1d9kkk1z
 info:
-  version: v2
+  version: v1
   title: Fyayc Products API
   description: |
     This a sample specification part of a YT tutorial showcasing how to design a RESTful API contract using OpenAPI.
