@@ -50,6 +50,14 @@ paths:
           schema:
             type: integer
             default: 5
+        - schema:
+            type: string
+            example: active
+            enum:
+              - active
+              - archived
+          in: query
+          name: status
       responses:
         '200':
           description: ''
@@ -320,33 +328,924 @@ paths:
                     limit: 3
                     total: 1500
                     data:
-                      - categories:
-                          - id: '12345'
-                            name: Laptops
-                        created_at: '2020-09-30T07:43:32.000Z'
-                        id: '1003'
-                        name: Mac Book Pro
-                        price: 2034.99
-                        description: Mac Book Pro
-                        lastUpdatedOn: '2023-01-01T10:10:10Z'
-                      - categories:
-                          - id: '12345'
-                            name: Laptops
-                        created_at: '2020-09-30T07:43:32.000Z'
-                        id: '1004'
-                        name: Mac Book Pro
-                        price: 2034.99
-                        description: Mac Book Pro
-                        lastUpdatedOn: '2023-01-01T10:10:10Z'
-                      - categories:
-                          - id: '12345'
-                            name: Laptops
-                        created_at: '2020-09-30T07:43:32.000Z'
-                        id: '1005'
-                        name: Mac Book Pro
-                        price: 2034.99
-                        description: Mac Book Pro
-                        lastUpdatedOn: '2023-01-01T10:10:10Z'
+                      - id: '1003'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP333
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP333-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP333-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1004'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP444
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP444-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP444-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1005'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP555
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP555-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP555-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                status active:
+                  value:
+                    offset: 2
+                    limit: 50
+                    total: 1500
+                    data:
+                      - id: '1003'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP333
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP333-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP333-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1004'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP444
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP444-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP444-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1005'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP555
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP555-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP555-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                status archived:
+                  value:
+                    offset: 0
+                    limit: 50
+                    total: 1500
+                    data:
+                      - id: '1001'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP111
+                        status: archived
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP111-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP111-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1002'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP222
+                        status: archived
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP222-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP222-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                default:
+                  value:
+                    offset: 0
+                    limit: 10
+                    total: 1500
+                    data:
+                      - id: '1001'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP111
+                        status: archived
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP111-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP111-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1002'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP222
+                        status: archived
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP222-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP222-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1003'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP333
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP333-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP333-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1004'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP444
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP444-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP444-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1005'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP555
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP555-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP555-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1006'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP666
+                        status: archived
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP666-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP666-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1007'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP777
+                        status: archived
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP777-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP777-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1008'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP888
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP888-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP888-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1009'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP999
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP999-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP999-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                      - id: '1010'
+                        name: MacBook Pro
+                        price: 1999.99
+                        description: 'Complete Product - Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
+                        lastUpdatedOn: '2024-01-01T10:10:10Z'
+                        created_at: '2023-12-16T07:43:32.000Z'
+                        images:
+                          - id: img_123
+                            url: 'https://example.com/macbook-pro.jpg'
+                        inventory_quantity: '10'
+                        options:
+                          - id: clr_1
+                            name: Color
+                            values:
+                              - Red
+                        sku: MBP510
+                        status: active
+                        tags:
+                          - Apple
+                        weight: '1.25'
+                        weight_unit: kg
+                        variants:
+                          - id: '1'
+                            images:
+                              - id: macbook-pro1
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP510-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
+                          - id: '2'
+                            images:
+                              - id: macbook-pro2
+                                url: 'https://example.com/macbook-pro.jpg'
+                            inventory_quantity: '5'
+                            name: Midnight 16inch MacBook Pro
+                            options:
+                              - id: '1'
+                                name: Color
+                                value: Silver
+                            price: '1999.99'
+                            sku: MBP510-16GB-SILVER-13
+                            weight: '1.25'
+                            weight_unit: lb
         '401':
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
