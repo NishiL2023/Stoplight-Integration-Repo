@@ -32,6 +32,8 @@ servers:
     description: Localhost environment
   - url: 'http://127.0.0.1:4010'
     description: Local Prism Server
+  - url: 'https://stoplight.io/mocks/fyayc-training/stoplight-integration-repo/371215418'
+    description: Embedded Prism Server
 paths:
   /products:
     get:
