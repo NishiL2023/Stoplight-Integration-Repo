@@ -1758,7 +1758,7 @@ components:
         - id
       x-examples:
         Complete Product:
-          id: '1001'
+          id: '1002'
           name: MacBook Pro
           price: 1999.99
           description: 'Powerful and portable, the MacBook Pro is perfect for professionals and creatives.'
