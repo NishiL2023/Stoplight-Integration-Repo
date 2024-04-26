@@ -1498,14 +1498,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Product'
-  securitySchemes:
-    OAuthClientCredentials:
-      type: oauth2
-      flows:
-        clientCredentials:
-          scopes:
-            products: Grants full admin access
-          tokenUrl: 'https://abc.eu/auth/token'
+  securitySchemes: {}
   responses:
     ProductResponse:
       description: Product Details
