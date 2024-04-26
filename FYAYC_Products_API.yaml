@@ -1300,7 +1300,7 @@ paths:
       description: Use this endpoint to get details about a specific product
       operationId: getProduct
       parameters:
-        - name: hydrate
+        - name: dehydrate
           in: query
           description: 'Provide a list of comma separated elements that you want to be omitted from the Product response. If the array is empty, complete Product will be displayed'
           schema:
@@ -1376,7 +1376,7 @@ paths:
                         sku: MBP123-16GB-SILVER-13
                         weight: '1.25'
                         weight_unit: lb
-                'hydrate : [images | variants]':
+                'dehydrate : [images | variants]':
                   value:
                     id: '1001'
                     name: MacBook Pro
