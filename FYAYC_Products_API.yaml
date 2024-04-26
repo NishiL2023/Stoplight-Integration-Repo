@@ -1797,7 +1797,7 @@ components:
           links:
             self: 'https://api.dev.mbp.geberit.com/data/v2/products/1001'
             variants: 'https://api.dev.mbp.geberit.com/data/v2/products/1001/variants'
-        'hydrate: [images | variants] ':
+        'dehydrate: [images | variants] ':
           id: '1001'
           name: MacBook Pro
           price: 1999.99
